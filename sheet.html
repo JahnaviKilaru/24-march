@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	
+</head>
+<body>
+	<form name="userdetals">
+		<div class="container justify-content-md-center mt-5">
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<img src="https://as1.ftcdn.net/v2/jpg/02/56/17/64/1000_F_256176467_52fIG5v0dPLnvxu6ELHscO0N25upC8e8.jpg" width="100%">
+				</div>
+				<div class="col-12 col-md-6">
+						<form>
+							<div class="form-group"> 
+							  	<label for="exampleInputName">Name:</label>
+							  	<input type="text" class="form-control" name="username">
+							  	<label for="exampleInputWhatsup">WhatsApp Id:</label>
+							  	<input type="text" class="form-control" name="whatsapp_number">
+							    <label for="exampleInputEmail1">Email address</label>
+							    <input type="email" class="form-control" name="email1_id" aria-describedby="emailHelp">
+							    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+							 </div>
+							  <div class="form-group">
+							    <label for="exampleInputPassword1">College Name</label>
+							    <input type="text" class="form-control" name="password1_name">
+							  </div>
+						     <button type="submit" class="btn btn-primary">Submit</button>
+					    </form>
+				</div> 
+			</div>   
+		</div>
+	</form>
+	<script type="text/javascript">
+		let form=document.forms["userdetals"];
+		form.addEventListener("submit",(e)=>{
+			e.preventDefault()
+			var username=document.forms["userdetals"]["username"].value
+	    	var whatsApp=document.forms["userdetals"]["whatsapp_number"].value
+			var email1=document.forms["userdetals"]["email1_id"].value
+			var password1=document.forms["userdetals"]["password1_name"].value
+			var usernameCheck=/^[a-zA-Z ]+$/
+			var whatsAppCheck=/^[6-9][0-9]{9}$/
+			var email1Check=/^[a-zA-Z0-9#*!&]+@[a-zA-Z]+\.[a-z]{2,3}$/
+			var password1Check=/^[a-zA-Z ]+$/
+			if (username=="" ||username.length<3){
+				alert("please enter your name")
+				return false
+			}
+			if(!username.match(usernameCheck)){
+				alert("please enter more than 3 words")
+				return false
+			}
+			if(whatsApp==""){
+				alert("please enter your mobile number")
+				return false
+			}
+			if(!whatsApp.match(whatsAppCheck)){
+				alert("example please check your mobile number")
+				return false
+			}
+			if(email1==""){
+				alert("please enter your eamil")
+				return flase
+			}
+			if(!email1.match(email1Check)){
+				alert("please check your eamil")
+				return false
+			}
+			if(password1Check==""){
+				alert("please enter your college name")
+				return false
+			}
+			if(!password1.match(password1Check)){
+				alert("please check your college name")
+				return false
+			}
+			let data=new FormData(form)
+			return serverCode(data)
+		})
+			
+		 function serverCode(data){
+			console.log("server",data)
+			alert("from servercode function")
+			 fetch("https://script.google.com/macros/s/AKfycbxTNXFWHiokzpnfu5eX41XBmzTOkjvzHaDvhONmjwmW8nNhF1dezHlzBv_MAANWfVMgPA/exec",{
+				  method:"POST",
+				  body:data
+			  })
+			  .then(res=>res.text)
+			  .then(data=>alert(data))
+			       document.forms["userdetals"]["username"].value=""
+			       document.forms["userdetals"]["whatsapp_number"].value=""
+			       document.forms["userdetals"]["email1_id"].value=""
+			       document.forms["userdetals"]["password1_name"].value=""
+		}
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<!-- https://script.google.com/macros/s/AKfycbxTNXFWHiokzpnfu5eX41XBmzTOkjvzHaDvhONmjwmW8nNhF1dezHlzBv_MAANWfVMgPA/exec -->
